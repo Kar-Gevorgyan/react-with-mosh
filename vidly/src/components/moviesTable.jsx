@@ -17,7 +17,7 @@ class MoviesTable extends Component {
 
         return (
             <table className="table">
-                <TableHeader columns={this.columns} onSort={onSort} sortColumn={sortColumn}/>
+                <Tablehea columns={this.columns} onSort={onSort} sortColumn={sortColumn}/>
                 <tbody>
                 {movies.map(movie => (
                         <tr key={movie._id}>
