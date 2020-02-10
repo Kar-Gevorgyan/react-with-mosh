@@ -11,18 +11,18 @@ import './App.css';
 function App() {
     return (
         <React.Fragment>
-            <header className="container-fluid">
+            <header className="container-fluid m-0">
                 <NavBar/>
             </header>
             <main className="container mt-4">
                 <Switch>
-                    <Route path="/movies/:_id" component={MovieForm}/>
-                    {/*<Route path="/movies" component={Movies}/>*/}
-                    <Route path="/movies" render={(props) => <Movies {...props}/>}/>
+                    <Route path="/movies/:id" component={MovieForm}/>
+                    <Route path="/movies" component={Movies}/>
+                    {/* <Route path="/movies" render={(props) => <sMovies {...props}/>}/> */}
                     <Route path="/costumers" component={Costumers}/>
                     <Route path="/rentals" component={Rentals}/>
                     <Route path="/not-found" component={NotFound}/>
-                    <Route path="/" exact component={Movies}/>
+                    <Redirect from="/" exact to="/movies"/>
                     <Redirect to="not-found"/>
                 </Switch>
             </main>
