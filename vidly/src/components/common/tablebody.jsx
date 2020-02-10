@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
+import { Link } from "react-router-dom";
 import _ from 'lodash'
+
 class TableBody extends Component {
     renderCell = (item, column) => {
         if(column.content) return column.content(item)
@@ -8,6 +10,14 @@ class TableBody extends Component {
 
     createKey = (item, column) => {
         return item._id + (column.path || column.key)
+    };
+    trial = () => {
+        console.log('trial')
+    };
+
+    createPath = (item, column) => {
+        if(column.path === 'title') return <Link to={`/movies/${item._id}`}>{this.renderCell(item, column)}</Link>;
+        return this.renderCell(item, column)
     };
 
     render() {
@@ -18,7 +28,7 @@ class TableBody extends Component {
                 <tr key={item._id}>
                     {columns.map(column => (
                         <td key={this.createKey(item, column)}>
-                            {this.renderCell(item, column)}
+                            {this.createPath(item, column)}
                         </td>
                     ))}
                 </tr>
