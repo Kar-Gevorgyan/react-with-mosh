@@ -13,16 +13,10 @@ class NavBar extends Component {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul className="navbar-nav">
-                        <li className="nav-item">
-                            <NavLink className="nav-link" to="/movies">Movies</NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink className="nav-link" to="/costumers">Costumers</NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink className="nav-link" to="/rentals">Rentals</NavLink>
-                        </li>
-                    </ul>
+                        <NavLink className="nav-link nav-item" to="/movies">Movies</NavLink>
+                        <NavLink className="nav-link nav-item" to="/costumers">Costumers</NavLink>
+                        <NavLink className="nav-link nav-item" to="/rentals">Rentals</NavLink>
+                        <NavLink className="nav-link nav-item" to="/login">Login</NavLink>                    </ul>
                 </div>
             </nav>
         );
