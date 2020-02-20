@@ -9,7 +9,7 @@ class LoginForm extends Form {
     }
 
     schema = {
-        username: Joi.string().required().label('Username'),
+        username: Joi.string().required().label('Username').email(),
         password: Joi.string().required().label('Password').min(8)
     }
 
