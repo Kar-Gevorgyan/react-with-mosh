@@ -18,6 +18,7 @@ function App() {
             </header>
             <main className="container mt-4">
                 <Switch>
+                    <Route path="/movies/:id" component={MovieForm}/>
                     <Route path="/movies/new" component={MovieForm}/>
                     <Route path="/movies" component={Movies}/>
                     {/* <Route path="/movies" render={(props) => <sMovies {...props}/>}/> */}
