@@ -5,9 +5,12 @@
   "dependencies": {
     "axios": "^0.19.2",
     "bootstrap": "^4.1.2",
+    "raven": "^2.6.4",
+    "raven-js": "^3.27.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "react-scripts": "1.1.4"
+    "react-scripts": "1.1.4",
+    "react-toastify": "^5.5.0"
   },
   "scripts": {
     "start": "react-scripts start",

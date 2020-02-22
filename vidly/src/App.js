@@ -13,7 +13,7 @@ import './App.css';
 function App() {
     return (
         <React.Fragment>
-            <header className="container-fluid m-0">
+            <header className="container">
                 <NavBar/>
             </header>
             <main className="container mt-4">
