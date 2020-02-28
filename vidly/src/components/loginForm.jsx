@@ -1,6 +1,8 @@
 import React from "react";
 import Joi from 'joi-browser';
 import Form from './common/form';
+import * as authService from '../services/authService'
+import { toast } from "react-toastify";
 
 class LoginForm extends Form {
     state = {
@@ -13,8 +15,15 @@ class LoginForm extends Form {
         password: Joi.string().required().label('Password').min(8)
     }
 
-    doSubmit = () => {
-        console.log('submited')
+    doSubmit = async () => {
+        try{
+            await authService.login(this.state.data)
+        }
+        catch(ex) {
+            if(ex.response && ex.response.status === 400){
+                toast.error(ex.response.data)
+            }
+        }
     }
 
     render() {
