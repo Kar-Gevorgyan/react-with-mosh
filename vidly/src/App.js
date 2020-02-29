@@ -9,33 +9,48 @@ import Rentals from "./components/rentals";
 import NotFound from "./components/notFound";
 import LoginForm from './components/loginForm';
 import RegisterForm from './components/registerForm';
+import Logout from './components/logout';
+import ProtectedRoute from './components/common/protectedRoute';
+import auth from './services/authService';
 import 'react-toastify/dist/ReactToastify.css'
 import './App.css';
 
-function App() {
-    return (
-        <React.Fragment>
-            <header className="container">
-                <ToastContainer/>
-                <NavBar/>
-            </header>
-            <main className="container mt-4">
-                <Switch>
-                    <Route path="/movies/:id" component={MovieForm}/>
-                    <Route path="/movies/new" component={MovieForm}/>
-                    <Route path="/movies" component={Movies}/>
-                    {/* <Route path="/movies" render={(props) => <sMovies {...props}/>}/> */}
-                    <Route path="/costumers" component={Costumers}/>
-                    <Route path="/rentals" component={Rentals}/>
-                    <Route path="/not-found" component={NotFound}/>
-                    <Route path="/login" component={LoginForm}/>
-                    <Route path="/register" component={RegisterForm}/>
-                    <Redirect from="/" exact to="/movies"/>
-                    <Redirect to="not-found"/>
-                </Switch>
-            </main>
-        </React.Fragment>
-    );
+class App extends React.Component {
+    state = {} 
+
+    componentDidMount() {
+        const user = auth.getCurrentUser()
+        this.setState({ user })
+    }
+    render() {
+        const { user } = this.state;
+
+        return (
+            <React.Fragment>
+                <header className="container">
+                    <ToastContainer/>
+                    <NavBar user={user}/>
+                </header>
+                <main className="container mt-4">
+                    <Switch>
+                        <ProtectedRoute path="/movies/:id" component={MovieForm}/>
+                        <Route 
+                            path="/movies" 
+                            render={props => <Movies {...props} user={user}/>}
+                        />
+                        <Route path="/costumers" component={Costumers}/>
+                        <Route path="/rentals" component={Rentals}/>
+                        <Route path="/not-found" component={NotFound}/>
+                        <Route path="/login" component={LoginForm}/>
+                        <Route path="/logout" component={Logout}/>
+                        <Route path="/register" component={RegisterForm}/>
+                        <Redirect from="/" exact to="/movies"/>
+                        <Redirect to="not-found"/>
+                    </Switch>
+                </main>
+            </React.Fragment>
+        );
+    }
 }
 
 export default App;
